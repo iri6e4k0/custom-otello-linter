@@ -20,7 +20,7 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     python_requires=">=3.10",
-    url="https://github.com/iri6e4ko/custom-otello-linter",
+    url="https://github.com/iri6e4k0/custom-otello-linter",
     author="Irina",
     author_email="iri6e4ko@gmail.com",
     license="Apache-2.0",
