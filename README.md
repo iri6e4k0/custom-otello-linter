@@ -4,7 +4,7 @@ Flake8 based linter for frontend tests
 ## Installation
 
 ```bash
-pip install fcustom-otello-linter
+pip install custom-otello-linter
 ```
 
 ## Configuration
@@ -17,6 +17,8 @@ You can ignore rules via
 ignore = OCS101
 ```
 - comment in code `#noqa: OCS101`
+
+```
 
 ## Rules
 
