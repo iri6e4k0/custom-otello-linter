@@ -8,4 +8,4 @@ class DecoratorVedroParams(Error):
 
 class MultipleScreenshotsError(Error):
     code = 'OCS300'
-    message = 'step "{step_name}" make_screenshot_for_comparison more once'
+    message = 'step "{step_name}" make_screenshot_for_comparison is used more than once'
