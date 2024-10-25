@@ -3,7 +3,7 @@ from flake8_plugin_utils import Error
 
 class DecoratorVedroParams(Error):
     code = 'OCS101'
-    message = 'decorator @vedro.params should not be presented'
+    message = 'decorator @vedro.params or @params should not be presented'
 
 
 class MultipleScreenshotsError(Error):

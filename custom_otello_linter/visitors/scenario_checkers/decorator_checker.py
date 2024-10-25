@@ -16,15 +16,25 @@ class VedroParamsChecker(ScenarioChecker):
         for step in context.steps:
             # Проходим по списку декораторов каждого шага
             for decorator in step.decorator_list:
-                # Проверяем, является ли декоратор вызовом функции (ast.Call)
-                if isinstance(decorator, ast.Call):
-                    # Проверяем, является ли функция атрибутом (например, vedro.params)
+                # Проверка вызова функции vedro.params (если декоратор вида vedro.params())
+                if isinstance(decorator, ast.Call) and isinstance(decorator.func, ast.Attribute):
                     if (
-                            isinstance(decorator.func, ast.Attribute)
-                            and decorator.func.value.id == 'vedro'
-                            and decorator.func.attr == 'params'
+                        isinstance(decorator.func.value, ast.Name)
+                        and decorator.func.value.id == 'vedro'
+                        and decorator.func.attr == 'params'
                     ):
-                        # Возвращаем ошибку, если найден декоратор vedro.params
+                        # Если найден vedro.params, возвращаем ошибку
                         return [DecoratorVedroParams(decorator.lineno, decorator.col_offset)]
+
+                # Проверка вызова params, если он импортирован напрямую (например, @params())
+                elif isinstance(decorator, ast.Call) and isinstance(decorator.func, ast.Name):
+                    if decorator.func.id == 'params':
+                        # Проверка, что params импортирован из vedro
+                        for import_from in context.import_from_nodes:
+                            if import_from.module == 'vedro':
+                                for name in import_from.names:
+                                    if name.name == 'params':
+                                        # Если найден params, возвращаем ошибку
+                                        return [DecoratorVedroParams(decorator.lineno, decorator.col_offset)]
 
         return []

@@ -31,6 +31,20 @@ def test_decorator_params():
     assert_not_error(ScenarioVisitor, code)
 
 
+def test_decorator_params_imported_from_vedro():
+    ScenarioVisitor.deregister_all()
+    ScenarioVisitor.register_scenario_checker(VedroParamsChecker)
+    code = """
+    from vedro import params
+    class Scenario:
+        subject = 'any subject'
+        @params(1)
+        @params(2)
+        def __init__(foo): pass
+    """
+    assert_error(ScenarioVisitor, code, DecoratorVedroParams)
+
+
 def test_vedro_decorator_skip():
     ScenarioVisitor.deregister_all()
     ScenarioVisitor.register_scenario_checker(VedroParamsChecker)
