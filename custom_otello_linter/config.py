@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class Config:
     def __init__(self):
         pass

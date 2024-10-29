@@ -1,6 +1,5 @@
 import ast
-import pathlib
-from typing import List, Optional
+from typing import List
 
 SCENARIOS_FOLDER = 'scenarios'
 

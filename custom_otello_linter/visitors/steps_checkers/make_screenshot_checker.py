@@ -51,7 +51,8 @@ class MakeScreenshotChecker(StepsChecker):
         """
         Извлекает полное имя функции из узла ast.Call.func.
         Для прямых вызовов (make_screenshot_for_comparison) возвращает 'make_screenshot_for_comparison'.
-        Для вызовов через атрибуты (self.page.make_screenshot_for_comparison) возвращает 'self.page.make_screenshot_for_comparison'.
+        Для вызовов через атрибуты (self.page.make_screenshot_for_comparison)
+        возвращает 'self.page.make_screenshot_for_comparison'.
         """
         if isinstance(func_node, ast.Name):
             return func_node.id
