@@ -1,8 +1,8 @@
 from flake8_plugin_utils import assert_error, assert_not_error
 
 from custom_otello_linter.errors import (
-    MissingScreenshotsAllureLabelError,
-    MissingMakeScreenshotFuncCallError
+    MissingMakeScreenshotFuncCallError,
+    MissingScreenshotsAllureLabelError
 )
 from custom_otello_linter.visitors import ScenarioVisitor
 from custom_otello_linter.visitors.screenshot_label_and_func_checker import (
@@ -69,6 +69,19 @@ def test_multiple_labels_with_make_screenshot_func():
         def when(): pass
         def then():
             self.page.make_screenshot_for_comparison()
+    """
+    assert_not_error(ScenarioVisitor, code)
+
+
+def test_screenshot_label_and_make_screenshot_func_with_parameter():
+    ScenarioVisitor.deregister_all()
+    ScenarioVisitor.register_steps_checker(ScreenshotsLabelAndFuncChecker)
+    code = """
+    @allure_labels(MANUAL, Feature.One, SCREENSHOTS)
+    class Scenario:
+        def when(): pass
+        def then():
+            self.page.make_screenshot_for_comparison(focus_on=self.page.payment.applied_discounts.locator)
     """
     assert_not_error(ScenarioVisitor, code)
 

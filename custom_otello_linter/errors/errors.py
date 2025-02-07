@@ -12,10 +12,10 @@ class MultipleScreenshotsError(Error):
 
 
 class MissingScreenshotsAllureLabelError(Error):
-    code = 'OCS401'
+    code = 'OCS102'
     message = 'test contains "make_screenshot_for_comparison" but is missing label "SCREENSHOTS"'
 
 
 class MissingMakeScreenshotFuncCallError(Error):
-    code = 'OCS402'
+    code = 'OCS301'
     message = 'test is marked with label "SCREENSHOTS" but doesn`t contain "make_screenshot_for_comparison" call'

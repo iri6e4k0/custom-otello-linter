@@ -8,8 +8,8 @@ from custom_otello_linter.abstract_checkers.get_full_func_name import (
     get_full_func_name
 )
 from custom_otello_linter.errors import (
-    MissingScreenshotsAllureLabelError,
-    MissingMakeScreenshotFuncCallError
+    MissingMakeScreenshotFuncCallError,
+    MissingScreenshotsAllureLabelError
 )
 from custom_otello_linter.visitors.scenario_visitor import (
     Context,
