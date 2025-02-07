@@ -15,6 +15,7 @@ class ScenarioHelper:
         ]
 
     # Метод находит узел с декоратором и списком лейблов
+    # Лейблы, указанные в параметризации, не попадут в выборку
     def get_allure_decorator(self, scenario_node: ast.ClassDef) -> Union[ast.Call, None]:
 
         for decorator in scenario_node.decorator_list:
