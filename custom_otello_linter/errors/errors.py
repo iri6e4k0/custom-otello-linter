@@ -9,3 +9,13 @@ class DecoratorVedroParams(Error):
 class MultipleScreenshotsError(Error):
     code = 'OCS300'
     message = 'step "{step_name}" make_screenshot_for_comparison is used more than once'
+
+
+class MissingAllureScreenshotsLabelError(Error):
+    code = 'OCS401'
+    message = 'Test contains "make_screenshot_for_comparison" but is missing label "SCREENSHOTS".'
+
+
+class MissingMakeScreenshotFuncCallError(Error):
+    code = 'OCS402'
+    message = 'Test is marked with label "SCREENSHOTS" but doesnt contain "make_screenshot_for_comparison" call.'

@@ -1,7 +1,4 @@
-from .scenario_checkers import (
-    VedroParamsChecker
-)
+from .scenario_checkers import VedroParamsChecker
 from .scenario_visitor import Context, ScenarioVisitor
-from .steps_checkers import (
-    MakeScreenshotChecker,
-)
+from .screenshot_label_and_func_checker import ScreenshotsLabelAndFuncChecker
+from .steps_checkers import MakeScreenshotChecker

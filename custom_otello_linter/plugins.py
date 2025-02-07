@@ -35,7 +35,7 @@ class PluginWithFilename(Plugin):
 
 class OtelloQAStylePlugin(PluginWithFilename):
     name = 'custom_otello_linter'
-    version = '1.0.2'
+    version = '1.0.3'
     visitors = [
         ScenarioVisitor,
     ]
