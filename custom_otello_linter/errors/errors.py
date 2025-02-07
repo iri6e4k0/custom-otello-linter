@@ -11,11 +11,11 @@ class MultipleScreenshotsError(Error):
     message = 'step "{step_name}" make_screenshot_for_comparison is used more than once'
 
 
-class MissingAllureScreenshotsLabelError(Error):
+class MissingScreenshotsAllureLabelError(Error):
     code = 'OCS401'
-    message = 'Test contains "make_screenshot_for_comparison" but is missing label "SCREENSHOTS".'
+    message = 'test contains "make_screenshot_for_comparison" but is missing label "SCREENSHOTS"'
 
 
 class MissingMakeScreenshotFuncCallError(Error):
     code = 'OCS402'
-    message = 'Test is marked with label "SCREENSHOTS" but doesnt contain "make_screenshot_for_comparison" call.'
+    message = 'test is marked with label "SCREENSHOTS" but doesn`t contain "make_screenshot_for_comparison" call'

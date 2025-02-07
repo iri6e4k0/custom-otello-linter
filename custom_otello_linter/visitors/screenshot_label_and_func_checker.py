@@ -8,7 +8,7 @@ from custom_otello_linter.abstract_checkers.get_full_func_name import (
     get_full_func_name
 )
 from custom_otello_linter.errors import (
-    MissingAllureScreenshotsLabelError,
+    MissingScreenshotsAllureLabelError,
     MissingMakeScreenshotFuncCallError
 )
 from custom_otello_linter.visitors.scenario_visitor import (
@@ -50,7 +50,7 @@ class ScreenshotsLabelAndFuncChecker(StepsChecker):
 
         # Если в тесте есть вызов функции, но нет лейбла – добавляем ошибку
         if has_screenshot_func and not has_screenshot_label:
-            errors.append(MissingAllureScreenshotsLabelError(
+            errors.append(MissingScreenshotsAllureLabelError(
                 lineno=allure_decorator.lineno,
                 col_offset=allure_decorator.col_offset))
 

@@ -1,7 +1,7 @@
 from flake8_plugin_utils import assert_error, assert_not_error
 
 from custom_otello_linter.errors import (
-    MissingAllureScreenshotsLabelError,
+    MissingScreenshotsAllureLabelError,
     MissingMakeScreenshotFuncCallError
 )
 from custom_otello_linter.visitors import ScenarioVisitor
@@ -45,7 +45,7 @@ def test_make_screenshot_func_without_screenshots_label():
         def then():
             self.page.make_screenshot_for_comparison()
     """
-    assert_error(ScenarioVisitor, code, MissingAllureScreenshotsLabelError)
+    assert_error(ScenarioVisitor, code, MissingScreenshotsAllureLabelError)
 
 
 def test_other_labels_without_make_screenshot_func():
