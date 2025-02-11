@@ -1,7 +1,8 @@
 from flake8_plugin_utils import Error
 
-#Ошибки типа OCS1XX - относятся к ошибкам сценария
-#Ошибки типа OCS3XX - относятся к ошибкам внутри шагов
+# Ошибки типа OCS1XX - относятся к ошибкам сценария
+# Ошибки типа OCS3XX - относятся к ошибкам внутри шагов
+
 
 class DecoratorVedroParams(Error):
     code = 'OCS101'

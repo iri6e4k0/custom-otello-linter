@@ -5,7 +5,7 @@ from custom_otello_linter.errors import (
     MissingScreenshotsAllureLabelError
 )
 from custom_otello_linter.visitors import ScenarioVisitor
-from custom_otello_linter.visitors.screenshot_label_and_func_checker import (
+from custom_otello_linter.visitors.scenario_and_steps_checkers.screenshot_label_and_func_checker import (
     ScreenshotsLabelAndFuncChecker
 )
 
