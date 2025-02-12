@@ -7,8 +7,8 @@ from custom_otello_linter.errors import (
     MissingMakeScreenshotFuncCallError,
     MissingScreenshotsAllureLabelError
 )
-from custom_otello_linter.helpers.find_make_screenshot_calls import (
-    find_make_screenshot_calls
+from custom_otello_linter.helpers.get_make_screenshot_calls import (
+    get_make_screenshot_calls
 )
 from custom_otello_linter.visitors.scenario_visitor import (
     Context,
@@ -33,8 +33,7 @@ class ScreenshotsLabelAndFuncChecker(StepsChecker):
 
         # Проверяем наличие вызова функции make_screenshot_for_comparison
         for step in context.steps:
-            make_screenshot_calls = find_make_screenshot_calls(step.body)
-            if make_screenshot_calls:
+            if get_make_screenshot_calls(step):
                 has_screenshot_func = True
                 break
 
