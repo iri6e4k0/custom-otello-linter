@@ -1,13 +1,12 @@
-import ast
 from typing import List
 
 from flake8_plugin_utils import Error
 
 from custom_otello_linter.abstract_checkers import StepsChecker
-from custom_otello_linter.abstract_checkers.get_full_func_name import (
-    get_full_func_name
-)
 from custom_otello_linter.errors import MultipleScreenshotsError
+from custom_otello_linter.helpers.find_make_screenshot_calls import (
+    find_make_screenshot_calls
+)
 from custom_otello_linter.visitors.scenario_visitor import (
     Context,
     ScenarioVisitor
@@ -27,28 +26,17 @@ class MakeScreenshotChecker(StepsChecker):
                     or step.name.startswith('and')
                     or step.name.startswith('but')
             ):
-                screenshot_calls = 0
+                screenshot_calls = find_make_screenshot_calls(step.body)
 
-                # Проходим через каждый элемент в теле функции (step.body)
-                for stmt in step.body:
-                    # Применяем ast.walk к каждому выражению в теле функции
-                    for node in ast.walk(stmt):
-                        if isinstance(node, ast.Call):
-                            func_name = get_full_func_name(node.func)
-
-                            # Проверяем вызов функции make_screenshot_for_comparison
-                            if func_name.endswith('make_screenshot_for_comparison'):
-                                screenshot_calls += 1
-
-                                # Если вызовов функции больше одного, добавляем ошибку
-                                if screenshot_calls > 1:
-                                    errors.append(MultipleScreenshotsError(
-                                        lineno=node.lineno,
-                                        col_offset=node.col_offset,
-                                        step_name=step.name
-                                    ))
-                                    # Прерываем проверку текущего шага после обнаружения ошибки
-                                    break
+                # Если вызовов функции больше одного, добавляем ошибку
+                if len(screenshot_calls) > 1:
+                    errors.append(MultipleScreenshotsError(
+                        lineno=screenshot_calls[1].lineno,
+                        col_offset=screenshot_calls[1].col_offset,
+                        step_name=step.name))
+                    # Прерываем проверку текущего шага после обнаружения ошибки
+                    break
 
         # Возвращаем собранные ошибки после завершения всех шагов
+
         return errors

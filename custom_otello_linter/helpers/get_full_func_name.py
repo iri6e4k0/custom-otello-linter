@@ -12,5 +12,4 @@ def get_full_func_name(func_node) -> str:
         return func_node.id
     elif isinstance(func_node, ast.Attribute):
         return get_full_func_name(func_node.value) + '.' + func_node.attr
-    else:
-        raise TypeError(f"Unsupported node type: {type(func_node).__name__}")
+    return ""

@@ -1,15 +1,14 @@
-import ast
 from typing import List
 
 from flake8_plugin_utils import Error
 
 from custom_otello_linter.abstract_checkers import StepsChecker
-from custom_otello_linter.abstract_checkers.get_full_func_name import (
-    get_full_func_name
-)
 from custom_otello_linter.errors import (
     MissingMakeScreenshotFuncCallError,
     MissingScreenshotsAllureLabelError
+)
+from custom_otello_linter.helpers.find_make_screenshot_calls import (
+    find_make_screenshot_calls
 )
 from custom_otello_linter.visitors.scenario_visitor import (
     Context,
@@ -34,13 +33,10 @@ class ScreenshotsLabelAndFuncChecker(StepsChecker):
 
         # Проверяем наличие вызова функции make_screenshot_for_comparison
         for step in context.steps:
-            for stmt in step.body:
-                for node in ast.walk(stmt):
-                    if isinstance(node, ast.Call):
-                        func_name = get_full_func_name(node.func)
-                        if func_name.endswith("make_screenshot_for_comparison"):
-                            has_screenshot_func = True
-                            break
+            make_screenshot_calls = find_make_screenshot_calls(step.body)
+            if make_screenshot_calls:
+                has_screenshot_func = True
+                break
 
         # Если в тесте есть лейбл, но нет вызова функции – добавляем ошибку
         if has_screenshot_label and not has_screenshot_func:
