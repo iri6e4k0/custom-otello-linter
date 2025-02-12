@@ -14,9 +14,9 @@ class ScenarioHelper:
             )
         ]
 
-    def get_allure_decorator(self, scenario_node: ast.ClassDef) -> Union[ast.Call, None]:
+    def get_allure_labels_decorator(self, scenario_node: ast.ClassDef) -> Union[ast.Call, None]:
         """
-        Метод находит узел с декоратором и списком лейблов.
+        Метод находит узел с декоратором allure_labels и списком лейблов.
         Лейблы, указанные в параметризации, не попадут в выборку
         """
 
@@ -25,21 +25,21 @@ class ScenarioHelper:
                 if decorator.func.id == 'allure_labels':
                     return decorator
 
-    def get_allure_tag_names(self, allure_decorator: ast.Call) -> List[str]:
+    def get_allure_labels_names(self, allure_decorator: ast.Call) -> List[str]:
         """
-        Метод получает список тегов из переданного декоратора @allure_labels
+        Метод получает список лейблов из переданного декоратора @allure_labels
         """
 
-        def get_tag_first_name(arg: ast.Attribute) -> str:
+        def get_label_first_name(arg: ast.Attribute) -> str:
             if isinstance(arg.value, ast.Attribute):
-                return get_tag_first_name(arg.value)
+                return get_label_first_name(arg.value)
             if isinstance(arg.value, ast.Name):
                 return arg.value.id
 
-        tags_names = []
+        labels_names = []
         for arg in allure_decorator.args:
             if isinstance(arg, ast.Attribute):
-                tags_names.append(get_tag_first_name(arg))
+                labels_names.append(get_label_first_name(arg))
             elif isinstance(arg, ast.Name):
-                tags_names.append(arg.id)
-        return tags_names
+                labels_names.append(arg.id)
+        return labels_names

@@ -23,13 +23,13 @@ class ScreenshotsLabelAndFuncChecker(StepsChecker):
     def check_steps(self, context: Context, config) -> List[Error]:
         errors = []
 
-        allure_decorator = self.get_allure_decorator(context.scenario_node)
+        allure_decorator = self.get_allure_labels_decorator(context.scenario_node)
         has_screenshot_label = False
         has_screenshot_func = False
 
         # Проверяем, есть ли в списке лейблов SCREENSHOTS
         if allure_decorator:
-            allure_tags = self.get_allure_tag_names(allure_decorator)
+            allure_tags = self.get_allure_labels_names(allure_decorator)
             has_screenshot_label = "SCREENSHOTS" in allure_tags
 
         # Проверяем наличие вызова функции make_screenshot_for_comparison
