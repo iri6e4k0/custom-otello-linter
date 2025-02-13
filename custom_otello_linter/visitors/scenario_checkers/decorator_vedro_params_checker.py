@@ -5,7 +5,10 @@ from flake8_plugin_utils import Error
 
 from custom_otello_linter.abstract_checkers import ScenarioChecker
 from custom_otello_linter.errors import DecoratorVedroParams
-from custom_otello_linter.visitors.scenario_visitor import Context, ScenarioVisitor
+from custom_otello_linter.visitors.scenario_visitor import (
+    Context,
+    ScenarioVisitor
+)
 
 
 @ScenarioVisitor.register_scenario_checker

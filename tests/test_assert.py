@@ -1,8 +1,6 @@
 from flake8_plugin_utils import assert_error, assert_not_error
 
-from custom_otello_linter.errors import (
-    MultipleScreenshotsError
-)
+from custom_otello_linter.errors import MultipleScreenshotsError
 from custom_otello_linter.visitors import ScenarioVisitor
 from custom_otello_linter.visitors.steps_checkers import MakeScreenshotChecker
 
@@ -58,7 +56,7 @@ def test_two_func_make_screenshot_in_step_and():
     assert_error(ScenarioVisitor, code, MultipleScreenshotsError, step_name='and_')
 
 
-def test_otwo_func_make_screenshot_in_step_but():
+def test_two_func_make_screenshot_in_step_but():
     ScenarioVisitor.deregister_all()
     ScenarioVisitor.register_steps_checker(MakeScreenshotChecker)
     code = """

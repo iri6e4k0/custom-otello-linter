@@ -8,7 +8,9 @@ from custom_otello_linter.abstract_checkers import (
 )
 from custom_otello_linter.config import Config
 from custom_otello_linter.types import FuncType
-from custom_otello_linter.visitors._visitor_with_filename import VisitorWithFilename
+from custom_otello_linter.visitors._visitor_with_filename import (
+    VisitorWithFilename
+)
 
 
 class Context:
