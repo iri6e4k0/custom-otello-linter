@@ -9,6 +9,11 @@ class DecoratorVedroParams(Error):
     message = 'decorator @vedro.params or params decorator from vedro package should not be presented'
 
 
+class DecoratorSelectoleted(Error):
+    code = 'OCS106'
+    message = 'decorator @selectoleted or selectoleted(...) should not be presented'
+
+
 class MultipleScreenshotsError(Error):
     code = 'OCS300'
     message = 'step "{step_name}" make_screenshot_for_comparison is used more than once'

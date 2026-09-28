@@ -1,4 +1,5 @@
 from .errors import (
+    DecoratorSelectoleted,
     DecoratorVedroParams,
     MissingMakeScreenshotFuncCallError,
     MissingScreenshotsAllureLabelError,

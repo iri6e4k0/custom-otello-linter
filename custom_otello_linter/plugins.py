@@ -6,6 +6,7 @@ from flake8.options.manager import OptionManager
 from flake8_plugin_utils import Plugin, Visitor
 
 from custom_otello_linter.visitors import ScenarioVisitor
+from custom_otello_linter.visitors.selectoleted_visitor import SelectoletedVisitor
 
 from .config import Config
 
@@ -35,9 +36,10 @@ class PluginWithFilename(Plugin):
 
 class OtelloQAStylePlugin(PluginWithFilename):
     name = 'custom_otello_linter'
-    version = '1.0.7'
+    version = '1.0.8'
     visitors = [
         ScenarioVisitor,
+        SelectoletedVisitor,
     ]
 
     def __init__(self, tree: ast.AST, filename: str, *args, **kwargs):
